@@ -14,7 +14,6 @@ test('Should return 200 status code...', async () => {
 
 test('Body should contain...', async () => {
 	let actualResponseBody;
-	let actualStatusCode;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/1`);
 		actualResponseBody = await response.json();

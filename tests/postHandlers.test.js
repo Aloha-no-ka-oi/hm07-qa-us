@@ -4,10 +4,10 @@ const config = require('../config');
 const requestBody = {
     "productsList": [
 		{
-		  "id": 5,
-		  "quantity": 2
+		"id": 5,
+		"quantity": 2
 		}
-	  ]
+	]
 }
 
 test('Status code should be 201', async () => {
