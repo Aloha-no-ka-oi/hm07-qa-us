@@ -1,48 +1,54 @@
 // eslint-disable-next-line no-undef
 const config = require('../config');
 
-const requestBody = {
+const requestBodyCreateKit = {
 	"productsList": [
         {
-            "id": 4,
-            "quantity": 1
+            "name": "Aaa",
+            "cardId": 1
         }
     ]
 }
+const requestBodyUpdateKit = {
+	"productsList": [
+	  {
+		"id": 0,
+		"quantity": 0
+	  }
+	],
+	"name": "Bbb"
+  }
 
 test('let status code be 200', async () => {
-	let actualStatusCode;
+	let kitId;
+	try {
+		const response = await fetch(`${config.API_URL}/api/v1/kits`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBodyCreateKit)
+		});
+		const postResponseBody = await response.json();
+		kitId = postResponseBody.id;
+	} catch (error) {
+		console.error(error);
+	}
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders/2`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/${kitId}`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(requestBody)
+			body: JSON.stringify(requestBodyUpdateKit)
 		});
-			actualStatusCode = response.status;
+		actualStatus = response.status;
+		const postResponseBody = await response.json();
+		actualBody = postResponseBody["ok"];
 	} catch (error) {
 		console.error(error);
 	}
 
-	expect(actualStatusCode).toBe(200);
-});
-
-
-test('Response body should be...', async () => {
-	let actualResponseBody;
-    try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders/2`, {
-			method: 'PUT',
-			headers: {
-			'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestBody)
-		});
-		actualResponseBody = await response.json();
-	} catch (error) {
-		console.error(error);
-	}
-
-	expect(actualResponseBody.wareHouse).toBe("Fresh Food");
+	expect(actualStatus).toBe(200);
+	expect(actualBody).toBe(true);
 });
