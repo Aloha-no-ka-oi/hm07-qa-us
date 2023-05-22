@@ -11,3 +11,5 @@ The tasks involve GET requests, POST requests, PUT requests and Delete requests
 5. Parse the response from postman into Visual Studio Code
 6. Complete code in VSD
 7. Run CMD in file path hm07-qa-us > tests
+8. Run applicable npx jest tests/(put/get/delete/push)Handlers.test.js
+//for example, for the the Put test, you would run the command npx jest tests/putHandlers.test.js
