@@ -12,7 +12,7 @@ test('Should return 200 status code...', async () => {
 	expect(actualStatusCode).toBe(200);
 });
 
-test('Body should contain...', async () => {
+test('Body should contain For Picnic', async () => {
 	let actualResponseBody;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/1`);
